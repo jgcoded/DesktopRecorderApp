@@ -42,16 +42,13 @@ To package apps for the local platform:
 npm run package
 ```
 
+## Electron React Boilerplate
 <img src=".erb/img/erb-banner.svg" width="100%" />
 
 <br>
 
-<p>
   This project was scaffolded with [Electron React Boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate). Please consider supporting Electron React Boilerplate on their Github.
 </p>
-
-<br>
-
 
 ## License
 
