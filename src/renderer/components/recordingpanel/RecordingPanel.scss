@@ -1,0 +1,58 @@
+@use '../Common';
+
+.recording-panel
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: inherit;
+    padding: 0px 16px;
+}
+
+.recording-button-svg
+{
+    width: 70px;
+    height: 70px;
+    fill: Common.$primary-color;
+    stroke: Common.$primary-color;
+    transition: transform .2s; 
+}
+
+.recording-button-svg text
+{
+    stroke: initial;
+}
+
+button:disabled .recording-button-svg
+{
+    stroke: Common.$element-disabled-color;
+    color: inherit;
+    fill: inherit;
+}
+
+button:disabled .recording-button-svg:hover
+{
+    transform: scale(1.0);
+}
+
+.recording-button-svg:hover
+{
+    transform: scale(1.1);
+}
+
+.display-text
+{
+    color: Common.$tertiary-color;
+    display: inline;
+    position: absolute;
+    font-size: x-small;
+    padding-top: 2px;
+}
+
+button:hover
+{
+    .display-text
+    {
+        color: Common.$accent-color;
+    }
+}

@@ -1,0 +1,22 @@
+
+.hotkey-input
+{
+    width: 180px;
+    height: 28px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    text-indent: 1em;
+    font-family: "Roboto";
+    font-size: 12pt;
+    background: url(../../../../assets/keyboard.svg) no-repeat scroll 154px 10px;
+}
+
+.hotkey-input-smallest
+{
+    font-size: 6pt;
+}
+
+.hotkey-input-small
+{
+    font-size: 9pt;
+}

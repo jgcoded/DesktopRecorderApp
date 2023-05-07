@@ -1,0 +1,41 @@
+@use '../Common';
+
+$video-panel-padding: 12px;
+
+.video-preview-panel {
+    
+    padding: $video-panel-padding;
+    user-select: none;
+
+    h3 {
+        margin-block-end: 0.1em;
+    }
+
+    video {
+        width: Common.$video-preview-panel-width - $video-panel-padding*2;
+        border-radius: 8px;
+        -webkit-app-region: no-drag;
+    }
+
+    .svg-button {
+        width: 32px;
+        margin: 0px 4px;
+    }
+
+    .info-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    p.details {
+        font-size: 8pt;
+        font-style: italic;
+        margin: 0px;
+        display: contents;
+    }
+
+    .error-text
+    {
+        color: Common.$error-text-color;
+    }
+}

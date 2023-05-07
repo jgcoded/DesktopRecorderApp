@@ -1,0 +1,130 @@
+{
+  "version": "1.0.0",
+  "appinsights-api-key": "",
+  "developer-contact": "mailto:desktoprecorderapp@gmail.com",
+  "privacy-policy": "https://gist.github.com/jgcoded/5bf8d4e88b311c9da8dd673aea82fff9",
+  "windowsPhotoProtocolLauncherUriFormat": "ms-photos:videoedit?InputToken={0}&Action=View",
+  "rate-app-url": "ms-windows-store://review/?productid=9NQB7L1KX84K",
+  "default-app-settings": {
+    "monitor": 0,
+    "audioEndpoint": "",
+    "isMuted": false,
+    "resolutionOption": 0,
+    "audioQuality": 2,
+    "framerate": 30,
+    "bitrateOption": 0,
+    "notifyRecordingStarted": true,
+    "hideAppWhenRecording": false,
+    "alwaysOnTop": true,
+    "telemetryEnabled": true,
+    "recordingHotkey": "Shift+F2"
+  },
+  "bitrate-settings": [
+    {
+      "resolutionOption": 2,
+      "bitrate": 9000000
+    },
+    {
+      "resolutionOption": 2,
+      "bitrateOption": 0,
+      "bitrate": 0
+    },
+    {
+      "resolutionOption": 1,
+      "bitrateOption": 0,
+      "bitrate": 0
+    },
+    {
+      "resolutionOption": 1,
+      "bitrateOption": 1,
+      "framerate": 30,
+      "bitrate": 6000000
+    },
+    {
+      "resolutionOption": 1,
+      "bitrateOption": 2,
+      "framerate": 30,
+      "bitrate": 9000000
+    },
+    {
+      "resolutionOption": 1,
+      "bitrateOption": 3,
+      "framerate": 30,
+      "bitrate": 12000000
+    },
+    {
+      "resolutionOption": 1,
+      "bitrateOption": 1,
+      "framerate": 60,
+      "bitrate": 9000000
+    },
+    {
+      "resolutionOption": 1,
+      "bitrateOption": 2,
+      "framerate": 60,
+      "bitrate": 13500000
+    },
+    {
+      "resolutionOption": 1,
+      "bitrateOption": 3,
+      "framerate": 60,
+      "bitrate": 18000000
+    },
+    {
+      "resolutionOption": 8,
+      "bitrate": 0
+    },
+    {
+      "resolutionOption": 9,
+      "bitrate": 0
+    },
+    {
+      "resolutionOption": 0,
+      "bitrateOption": 0,
+      "framerate": 30,
+      "bitrate": 9000000
+    },
+    {
+      "resolutionOption": 0,
+      "bitrateOption": 1,
+      "framerate": 30,
+      "bitrate": 6000000
+    },
+    {
+      "resolutionOption": 0,
+      "bitrateOption": 2,
+      "framerate": 30,
+      "bitrate": 9000000
+    },
+    {
+      "resolutionOption": 0,
+      "bitrateOption": 3,
+      "framerate": 30,
+      "bitrate": 12000000
+    },
+    {
+      "resolutionOption": 0,
+      "bitrateOption": 0,
+      "framerate": 60,
+      "bitrate": 18000000
+    },
+    {
+      "resolutionOption": 0,
+      "bitrateOption": 1,
+      "framerate": 60,
+      "bitrate": 9000000
+    },
+    {
+      "resolutionOption": 0,
+      "bitrateOption": 2,
+      "framerate": 60,
+      "bitrate": 13500000
+    },
+    {
+      "resolutionOption": 0,
+      "bitrateOption": 3,
+      "framerate": 60,
+      "bitrate": 18000000
+    }
+  ]
+}

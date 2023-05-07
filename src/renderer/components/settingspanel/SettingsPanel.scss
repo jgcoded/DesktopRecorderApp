@@ -1,0 +1,94 @@
+@use '../Common';
+
+.settings-panel
+{
+    padding: 12px;
+    -webkit-app-region: no-drag;
+
+    label
+    {
+        display: block;
+
+        select
+        {
+            border: 1px solid Common.$element-border-color;
+            border-radius: 4px;
+            color: Common.$font-color;
+            width: 186px;
+            height: 28px;
+            font-size: 12pt;
+            text-indent: 0.5em;
+        }
+    }
+
+    button, select, input
+    {
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+
+    .extra-links
+    {
+        float: right;
+    }
+
+    .extra-links a
+    {
+        display: inline;
+        font-size: 10pt;
+        margin-left: 8px;
+    }
+
+    .setting-item-container
+    {
+        display: flex;
+        justify-content: space-between;
+        text-align: right;
+        align-items: baseline;
+        user-select: none;
+    }
+
+    .radio-button-group label
+    {
+        display: inline-block;
+        margin: 8px 16px;
+    }
+
+    .button
+    {
+        border: 1px solid Common.$element-border-color;
+        width: 79px;
+        height: 24px;
+        border-radius: 4px;
+        background-color: inherit;
+        margin-left: 0px;
+        transition-property: background-color;
+        transition-duration: .2s;
+    }
+
+    .button:hover
+    {
+        background-color: Common.$selected-item-color;
+    }
+
+    .settings-button
+    {
+        margin-top: 0px;
+    }
+
+    .warning
+    {
+        font-size: 9pt;
+        color: Common.$warning-text-color;
+        text-align: center;
+        user-select: none;
+    }
+
+    .rate-app-text
+    {
+        font-size: 9pt;
+        text-align: center;
+        margin: 0.5em 0em;
+        user-select: none;
+    }
+}

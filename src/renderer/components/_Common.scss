@@ -1,0 +1,46 @@
+@use '../px';
+
+$primary-color: #D64343;
+$secondary-color: #FFFFFF;
+$tertiary-color: #666666;
+$accent-color: #0085DE; // button hover/selected / header color / checkbox check
+$deep-accent-color: rgb(0, 104, 184);
+$background-color: #FFFFFF;
+
+$element-disabled-color: #E5E5E5;
+$element-border-color: #E5E5E5; // disabled color / divider color / select/checkbox border color
+$element-border-size: 1px;
+$element-border-radius: 4px;
+
+$selected-item-color: #D9F0FF; // selected item in list color
+$extra-info-color: #999999; // menu item shortcut indicator text / recording hotkey editor svg color / checkbox font color when not drawing attention
+$close-button-color: #BCBCBC; // close button color
+$audio-level-background-color: #F4F4F4; // audio level background color
+
+$warning-text-color: #87792b;
+$error-text-color: rgb(230, 49, 49);
+
+$font-color: #333333;
+$font-size: 12pt;
+
+$app-border-radius: 8px;
+
+$shadow-color: rgba(0,0,0,0.16);
+$shadow-size: map-get($map: px.$px, $key: "shadow-size");;
+
+$recording-panel-width: map-get($map: px.$px, $key: "recording-panel-width");
+$recording-panel-height: map-get($map: px.$px, $key: "recording-panel-height");
+
+$settings-panel-width: map-get($map: px.$px, $key: "settings-panel-width");
+$settings-panel-height: map-get($map: px.$px, $key: "settings-panel-height");
+
+$display-selection-panel-width: map-get($map: px.$px, $key: "display-selection-panel-width");
+$display-selection-panel-height: map-get($map: px.$px, $key: "display-selection-panel-height");
+
+$microphone-selection-panel-width: $display-selection-panel-width;
+$microphone-selection-panel-height: $display-selection-panel-height;
+
+$video-preview-panel-width: map-get($map: px.$px, $key: "video-preview-panel-width");
+$video-preview-panel-height: map-get($map: px.$px, $key: "video-preview-panel-height");
+
+$panel-margin-size: map-get($map: px.$px, $key: "panel-margin-size");

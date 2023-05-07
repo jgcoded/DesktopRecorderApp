@@ -1,0 +1,64 @@
+@use '../Common';
+
+%panel
+{
+    border-radius: 8px;
+    background-color: Common.$background-color;
+    -webkit-app-region: drag;
+    -webkit-box-shadow: 0px 0px Common.$shadow-size 0px Common.$shadow-color;
+    box-shadow: 0px 0px Common.$shadow-size 0px Common.$shadow-color;
+}
+
+.recording-panel-container
+{
+    @extend %panel;
+    width: Common.$recording-panel-width;
+    height: Common.$recording-panel-height;
+}
+
+.settings-panel-container
+{
+    @extend %panel;
+    width: Common.$settings-panel-width;
+    height: Common.$settings-panel-height;
+    margin-bottom: Common.$panel-margin-size;
+    overflow-y: scroll;
+}
+
+.display-selection-panel-container
+{
+    @extend %panel;
+    width: Common.$display-selection-panel-width;
+    height: Common.$display-selection-panel-height;
+    margin-bottom: Common.$panel-margin-size;
+    margin-left: auto;
+    margin-right: 0px;
+    overflow-y: scroll;
+}
+
+.microphone-selection-panel-container
+{
+    @extend %panel;
+    width: Common.$microphone-selection-panel-width;
+    height: Common.$microphone-selection-panel-height;
+    margin-bottom: Common.$panel-margin-size;
+    overflow-y: scroll;
+}
+
+.video-preview-panel-container
+{
+    @extend %panel;
+    width: Common.$video-preview-panel-width;
+    height: Common.$video-preview-panel-height;
+    margin-bottom: Common.$panel-margin-size;
+    overflow-y: scroll;
+}
+
+.close-button
+{
+    position: absolute;
+    top: 510px;
+    right: 16px;
+    color: Common.$close-button-color;
+    fill: Common.$close-button-color;
+}
