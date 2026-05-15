@@ -1,5 +1,3 @@
-const { notarize } = require('@electron/notarize');
-
 exports.default = async function notarizeMacos(context) {
   const { electronPlatformName, appOutDir } = context;
   if (electronPlatformName !== 'darwin') {
@@ -24,6 +22,7 @@ exports.default = async function notarizeMacos(context) {
     return;
   }
 
+  const { notarize } = await import('@electron/notarize');
   const appName = context.packager.appInfo.productFilename;
 
   await notarize({
