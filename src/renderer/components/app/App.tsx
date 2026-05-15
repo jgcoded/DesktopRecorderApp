@@ -170,19 +170,19 @@ class App extends React.Component<AppProps, AppState> {
 
     RecordingService.getInstance().on(
       'recording-state-changed',
-      this.onRecordingStateChanged
+      this.onRecordingStateChanged,
     );
     this.offDisplaysChanged = window.electron.ipcRenderer.on(
       IpcEventsFromMain.DisplaysChanged,
-      this.onRecordableDevicesChanged
+      this.onRecordableDevicesChanged,
     );
     this.offScaleChanged = window.electron.ipcRenderer.on(
       IpcEventsFromMain.ScaleChanged,
-      this.onRecordableDevicesChanged
+      this.onRecordableDevicesChanged,
     );
     this.offDiplaysModified = window.electron.ipcRenderer.on(
       IpcEventsFromMain.DisplaysModified,
-      this.onRecordableDevicesChanged
+      this.onRecordableDevicesChanged,
     );
     navigator.mediaDevices.ondevicechange = this.onRecordableDevicesChanged;
     window.addEventListener('contextmenu', (event) => {
@@ -203,7 +203,7 @@ class App extends React.Component<AppProps, AppState> {
     HotKeyService.UnregisterAllGlobalHotKeys();
     RecordingService.getInstance().off(
       'recording-state-changed',
-      this.onRecordingStateChanged
+      this.onRecordingStateChanged,
     );
     this.offDiplaysModified();
     this.offDisplaysChanged();
@@ -255,7 +255,7 @@ class App extends React.Component<AppProps, AppState> {
       },
       async () => {
         await AppWindow.updateMainWindowSize();
-      }
+      },
     );
   }
 
@@ -280,7 +280,7 @@ class App extends React.Component<AppProps, AppState> {
       },
       async () => {
         await AppWindow.updateMainWindowSize();
-      }
+      },
     );
   }
 
@@ -305,7 +305,7 @@ class App extends React.Component<AppProps, AppState> {
       },
       async () => {
         await AppWindow.updateMainWindowSize();
-      }
+      },
     );
   }
 
@@ -319,7 +319,7 @@ class App extends React.Component<AppProps, AppState> {
       },
       async () => {
         await AppWindow.updateMainWindowSize();
-      }
+      },
     );
   }
 
@@ -390,7 +390,7 @@ class App extends React.Component<AppProps, AppState> {
               } else {
                 const isMicrophoneStillAvailable =
                   recordableDevices.microphones.find(
-                    (m) => m.endpoint === state.audioEndpoint
+                    (m) => m.endpoint === state.audioEndpoint,
                   );
                 if (audioEndpoint === '' || !isMicrophoneStillAvailable) {
                   newState.audioEndpoint =
@@ -404,7 +404,7 @@ class App extends React.Component<AppProps, AppState> {
             async () => {
               SettingsStorage.storeSettings(this.state);
               await AppWindow.updateMainWindowSize();
-            }
+            },
           );
         });
     });
@@ -418,7 +418,7 @@ class App extends React.Component<AppProps, AppState> {
         await AppWindow.updateMainWindowSize();
         setTimeout(
           () => this.setState({ isRecordingBlocked: false }),
-          this.RecordingStateChangeDelay
+          this.RecordingStateChangeDelay,
         );
 
         const {
@@ -437,7 +437,7 @@ class App extends React.Component<AppProps, AppState> {
           if (notifyRecordingStarted) {
             NotificationService.notify(
               document.title,
-              `Recording Started. Press ${recordingHotkey} to stop recording.`
+              `Recording Started. Press ${recordingHotkey} to stop recording.`,
             );
           }
         } else {
@@ -476,7 +476,7 @@ class App extends React.Component<AppProps, AppState> {
             TelemetryService.trackException(error);
             NotificationService.notify(
               document.title,
-              'Recording Stopped. Sorry, something may be wrong.'
+              'Recording Stopped. Sorry, something may be wrong.',
             );
           }
 
@@ -484,7 +484,7 @@ class App extends React.Component<AppProps, AppState> {
 
           await window.electron.ipcRenderer.ShowWindow();
         }
-      }
+      },
     );
   }
 
@@ -555,7 +555,7 @@ class App extends React.Component<AppProps, AppState> {
       },
       () => {
         SettingsStorage.storeSettings(this.state);
-      }
+      },
     );
   }
 
@@ -602,5 +602,5 @@ class App extends React.Component<AppProps, AppState> {
 const { telemetryEnabled } = SettingsStorage.getSettings();
 export default TelemetryService.initializeWithReactComponent(
   App,
-  telemetryEnabled
+  telemetryEnabled,
 );

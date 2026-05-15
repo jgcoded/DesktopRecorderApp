@@ -36,7 +36,7 @@ const ipcApi: IpcApi = {
   LaunchAndGetFileSharingToken: (filePath) =>
     ipcRenderer.invoke(
       RendererIpcCommands.LaunchAndGetFileSharingToken,
-      filePath
+      filePath,
     ),
   StopRecording: () => ipcRenderer.invoke(RendererIpcCommands.StopRecording),
   JoinPath: (paths) => ipcRenderer.invoke(RendererIpcCommands.JoinPath, paths),

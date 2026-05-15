@@ -11,7 +11,7 @@ type RecordingStateChangeCallback = (
   // eslint-disable-next-line no-unused-vars
   isRecording: boolean,
   // eslint-disable-next-line no-unused-vars
-  error?: Error
+  error?: Error,
 ) => void;
 
 export default class RecordingService {
@@ -70,17 +70,17 @@ export default class RecordingService {
       bitrate: RecordingService.DetermineBitRate(
         videoSettings.resolutionOption,
         videoSettings.bitrateOption,
-        videoSettings.framerate
+        videoSettings.framerate,
       ),
       ...videoSettings,
     };
 
     window.electron.ipcRenderer.once(
       IpcEventsFromMain.OnRecordingChildProcessExit,
-      this.onRecordingChildProcessExit
+      this.onRecordingChildProcessExit,
     );
     await window.electron.ipcRenderer.LaunchAndStartRecording(
-      recordingSettings
+      recordingSettings,
     );
     this.isVideoServiceActiveAndRecording = true;
     this.emitEvent('recording-state-changed', this.isRecording());
@@ -97,7 +97,7 @@ export default class RecordingService {
   private cleanupAfterRecording() {
     window.electron.ipcRenderer.off(
       IpcEventsFromMain.OnRecordingChildProcessExit,
-      this.onRecordingChildProcessExit
+      this.onRecordingChildProcessExit,
     );
     this.isVideoServiceActiveAndRecording = false;
   }
@@ -105,7 +105,7 @@ export default class RecordingService {
   private onRecordingChildProcessExit(
     unknownCode?: number | unknown,
     // eslint-disable-next-line no-undef
-    unknownSignal?: NodeJS.Signals | unknown
+    unknownSignal?: NodeJS.Signals | unknown,
   ) {
     const code = (unknownCode ?? 0) as number;
     const signal = (unknownSignal ?? '') as string;
@@ -121,7 +121,7 @@ export default class RecordingService {
     } else {
       // either one of code or signal will be non-null
       const error = new Error(
-        `recording error: code: 0x${code?.toString(16)} signal: ${signal}`
+        `recording error: code: 0x${code?.toString(16)} signal: ${signal}`,
       );
       this.emitEvent('recording-state-changed', this.isRecording(), error);
     }
@@ -141,14 +141,14 @@ export default class RecordingService {
 
   public on(
     event: 'recording-state-changed',
-    callback: RecordingStateChangeCallback
+    callback: RecordingStateChangeCallback,
   ) {
     this.eventEmitter.on(event, callback);
   }
 
   public off(
     event: 'recording-state-changed',
-    callback: RecordingStateChangeCallback
+    callback: RecordingStateChangeCallback,
   ) {
     this.eventEmitter.off(event, callback);
   }
@@ -156,7 +156,7 @@ export default class RecordingService {
   private emitEvent(
     event: 'recording-state-changed',
     isRecording: boolean,
-    error?: Error
+    error?: Error,
   ) {
     this.eventEmitter.emit(event, isRecording, error);
   }
@@ -185,7 +185,7 @@ export default class RecordingService {
   private static DetermineBitRate(
     resolutionOption: ResolutionOption,
     bitrateOption: BitrateOption,
-    framerate: number
+    framerate: number,
   ): number {
     // determine bit rate from resolution option, bitrate option, and framerate
     const bitrateSettings: BitrateSetting[] =

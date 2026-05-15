@@ -62,11 +62,11 @@ export interface IpcApi {
   GetFileStats: (filePath: string) => Promise<any>;
   on: (
     channel: IpcEventsFromMain,
-    func: (...args: unknown[]) => void
+    func: (...args: unknown[]) => void,
   ) => () => void;
   once: (
     channel: IpcEventsFromMain,
-    func: (...args: unknown[]) => void
+    func: (...args: unknown[]) => void,
   ) => void;
   off: (channel: IpcEventsFromMain, func: (...args: unknown[]) => void) => void;
 }
