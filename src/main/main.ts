@@ -19,6 +19,7 @@ import {
 } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import electronDebug from 'electron-debug';
 import { statSync } from 'fs';
 import RecordingSettings from 'common/RecordingSettings';
 import { RendererIpcCommands, IpcEventsFromMain } from '../common/IpcApi';
@@ -45,7 +46,7 @@ const isDebug =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true';
 
 if (isDebug) {
-  require('electron-debug')();
+  electronDebug({ devToolsMode: 'detach' });
 }
 
 const installExtensions = async () => {
@@ -56,7 +57,7 @@ const installExtensions = async () => {
   return installer
     .default(
       extensions.map((name) => installer[name]),
-      forceDownload
+      forceDownload,
     )
     .catch(console.log);
 };
@@ -247,19 +248,18 @@ ipcMain.handle(
   async (_event, settings: RecordingSettings) => {
     console.log('sending start recording', settings);
 
-    recordingChildProcess = await RecordingChildProcess.LaunchAndStartRecording(
-      settings
-    );
+    recordingChildProcess =
+      await RecordingChildProcess.LaunchAndStartRecording(settings);
     recordingChildProcess.once('exit', async (code, signal) => {
       console.log('recording child exit', code, signal);
       recordingChildProcess = null;
       mainWindow?.webContents.send(
         IpcEventsFromMain.OnRecordingChildProcessExit,
         code,
-        signal
+        signal,
       );
     });
-  }
+  },
 );
 
 ipcMain.handle(RendererIpcCommands.StopRecording, async () => {

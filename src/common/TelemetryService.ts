@@ -23,7 +23,7 @@ export default class TelemetryService {
   public static initializeWithReactComponent(
     // eslint-disable-next-line no-undef
     component: React.ComponentType<any>,
-    initiallyEnabled: boolean
+    initiallyEnabled: boolean,
   ) {
     const key = ConfigService.getAppInsightsKey();
     TelemetryService.reactPlugin = new ReactPlugin();
@@ -58,7 +58,7 @@ export default class TelemetryService {
           if (item && item.ext && item.ext.trace && item.ext.trace.name) {
             item.ext.trace.name = 'index.html';
           }
-        }
+        },
       );
     } else {
       TelemetryService.appInsights.config.disableTelemetry = true;
@@ -89,7 +89,7 @@ export default class TelemetryService {
 
   public static stopTrackEvent(
     event: TelemetryEvent,
-    additionalProperties?: { [key: string]: string }
+    additionalProperties?: { [key: string]: string },
   ) {
     if (TelemetryService.isTelemetryDisabled()) {
       return;

@@ -6,7 +6,7 @@ export default class HotKeyService {
   public static async RegisterGlobalHotKey(
     // eslint-disable-next-line no-undef
     hotkey: Electron.Accelerator,
-    callback: () => void
+    callback: () => void,
   ) {
     if (this.offOnGlobal) {
       this.offOnGlobal();
@@ -17,7 +17,7 @@ export default class HotKeyService {
         if (triggeredHotKey === hotkey) {
           callback();
         }
-      }
+      },
     );
     return window.electron.ipcRenderer.RegisterGlobalHotkey(hotkey);
   }

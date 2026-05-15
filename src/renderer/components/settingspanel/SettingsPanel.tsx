@@ -35,7 +35,7 @@ export class SettingsPanel extends React.Component<SettingsProps> {
 
   private static async openPrivacyPolicyPage() {
     await window.electron.ipcRenderer.OpenExternalApp(
-      ConfigService.getPrivacyPolicyURL()
+      ConfigService.getPrivacyPolicyURL(),
     );
   }
 
@@ -48,7 +48,7 @@ export class SettingsPanel extends React.Component<SettingsProps> {
   }
 
   private onHtmlElementChange(
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) {
     const settingName: string = event.target.name;
     const { value } = event.target;
@@ -76,7 +76,7 @@ export class SettingsPanel extends React.Component<SettingsProps> {
   }
 
   private onHtmlElementFocus(
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) {
     const settingName: string = event.target.name;
     // eslint-disable-next-line react/destructuring-assignment
@@ -84,7 +84,7 @@ export class SettingsPanel extends React.Component<SettingsProps> {
   }
 
   private onHtmlElementBlur(
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) {
     const settingName: string = event.target.name;
     // eslint-disable-next-line react/destructuring-assignment

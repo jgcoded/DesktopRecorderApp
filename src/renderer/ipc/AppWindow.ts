@@ -2,6 +2,8 @@ import ConfigService from 'common/ConfigService';
 import { IpcEventsFromMain } from '../../common/IpcApi';
 
 export default class AppWindow {
+  private static initialSetupDone = false;
+
   // Use known startup time window size for performance improvements
   // Calling document.getElementById on start up has bad performance
   public static async updateToInitialMainWindowSize() {
@@ -13,7 +15,7 @@ export default class AppWindow {
       windowWidth,
       initialHeight,
       windowWidth,
-      windowHeight
+      windowHeight,
     );
   }
 
@@ -22,7 +24,7 @@ export default class AppWindow {
     const { bodyWidth, bodyHeight } = AppWindow.getBodySize();
     const { width, height } = AppWindow.calculateNewSize(
       containerWidth,
-      containerHeight
+      containerHeight,
     );
 
     await AppWindow.updateSize(bodyWidth, bodyHeight);
@@ -31,37 +33,34 @@ export default class AppWindow {
 
   private static async updateSize(
     newWindowWidth: number,
-    newWindowHeight: number
+    newWindowHeight: number,
   ) {
-    const [windowWidth, windowHeight] =
-      await window.electron.ipcRenderer.getWindowSize();
-    if (windowWidth === 0 && windowHeight === 0) {
-      await window.electron.ipcRenderer.setWindowSize(
-        newWindowWidth,
-        newWindowHeight
-      );
-
-      const workArea =
-        await window.electron.ipcRenderer.GetPrimaryDisplayWorkArea();
-      const appOffsetY = ConfigService.getInitialAppOffsetY();
-      const appXPos = workArea.x + workArea.width / 2 - newWindowWidth / 2;
-      const appYPos =
-        workArea.y + workArea.height - newWindowHeight + appOffsetY;
-      await window.electron.ipcRenderer.SetWindowPosition(appXPos, appYPos);
-      window.electron.ipcRenderer.on(
-        IpcEventsFromMain.ScaleChanged,
-        async () => {
-          await AppWindow.updateMainWindowSize();
-        }
-      );
+    if (AppWindow.initialSetupDone) {
+      return;
     }
+    AppWindow.initialSetupDone = true;
+
+    await window.electron.ipcRenderer.setWindowSize(
+      newWindowWidth,
+      newWindowHeight,
+    );
+
+    const workArea =
+      await window.electron.ipcRenderer.GetPrimaryDisplayWorkArea();
+    const appOffsetY = ConfigService.getInitialAppOffsetY();
+    const appXPos = workArea.x + workArea.width / 2 - newWindowWidth / 2;
+    const appYPos = workArea.y + workArea.height - newWindowHeight + appOffsetY;
+    await window.electron.ipcRenderer.SetWindowPosition(appXPos, appYPos);
+    window.electron.ipcRenderer.on(IpcEventsFromMain.ScaleChanged, async () => {
+      await AppWindow.updateMainWindowSize();
+    });
   }
 
   private static async updateShape(
     width: number,
     height: number,
     windowWidth: number,
-    windowHeight: number
+    windowHeight: number,
   ) {
     // eslint-disable-next-line no-undef
     const windowShape: Electron.Rectangle = {
@@ -92,7 +91,7 @@ export default class AppWindow {
 
   private static calculateNewSize(
     containerWidth: number,
-    containerHeight: number
+    containerHeight: number,
   ) {
     const shadowSize = ConfigService.getShadowSizeConstant();
     const width = containerWidth + shadowSize * 2;

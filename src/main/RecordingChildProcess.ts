@@ -19,7 +19,7 @@ export default class RecordingChildProcess {
   }
 
   public static async LaunchAndStartRecording(
-    recordingSettings: RecordingSettings
+    recordingSettings: RecordingSettings,
   ): Promise<RecordingChildProcess> {
     const childProcess = await this.SpawnVideoService();
     const data = new StartRecording(recordingSettings).Serialize();
@@ -46,14 +46,14 @@ export default class RecordingChildProcess {
 
   public once(
     _event: 'exit',
-    callback: (code?: number, signal?: NodeJS.Signals) => void
+    callback: (code?: number, signal?: NodeJS.Signals) => void,
   ) {
     this.recordingChildProcess.once('exit', callback);
   }
 
   public off(
     _event: 'exit',
-    callback: (code?: number, signal?: NodeJS.Signals) => void
+    callback: (code?: number, signal?: NodeJS.Signals) => void,
   ) {
     this.recordingChildProcess.off('exit', callback);
   }
@@ -65,23 +65,23 @@ export default class RecordingChildProcess {
     await RecordingChildProcess.WriteDataToStream(childProcess.stdin, data);
 
     const response = RecordingChildProcess.ReadDataFromStream(
-      childProcess.stdout
+      childProcess.stdout,
     );
     return JSON.parse(await response);
   }
 
   public static async LaunchAndGetFileSharingToken(
-    filePath: string
+    filePath: string,
   ): Promise<GetFileSharingToken.GetFileSharingTokenResponse> {
     const childProcess = await this.SpawnVideoService();
 
     const data = new GetFileSharingToken.GetFileSharingToken(
-      filePath
+      filePath,
     ).Serialize();
     await RecordingChildProcess.WriteDataToStream(childProcess.stdin, data);
 
     const response = RecordingChildProcess.ReadDataFromStream(
-      childProcess.stdout
+      childProcess.stdout,
     );
     return JSON.parse(await response);
   }
@@ -99,6 +99,7 @@ export default class RecordingChildProcess {
       for (let i = 0; i < searchDirs.length; i++) {
         const dir = searchDirs[i];
         const currentPath = path.resolve(dir, 'VideoService.exe');
+        // eslint-disable-next-line no-console
         console.log('Checking for VideoService.exe in', currentPath);
         if (fs.existsSync(currentPath)) {
           exePath = currentPath;
@@ -115,14 +116,14 @@ export default class RecordingChildProcess {
       resolve(
         spawn(`${exePath}`, [], {
           stdio: 'pipe',
-        })
+        }),
       );
     });
   }
 
   private static WriteDataToStream(
     stream: Writable | null,
-    data: string
+    data: string,
   ): Promise<void> {
     if (stream == null) {
       const error = 'cannot write data to null stream';
